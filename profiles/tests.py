@@ -1,27 +1,28 @@
-from django.test import TestCase
-from django.urls import reverse, resolve
 import pytest
-# import views
+from django.contrib.auth.models import User
+from django.urls import reverse
+from profiles.models import Profile
 
 
-# # Create your tests here.
-# class TestUrls:
-#
-#     def test_detail_url(self):
-#         path = reverse('profile', kwargs={'username': '4meRomance'})
-#         assert resolve(path).view_name == 'profile'
+@pytest.mark.django_db
+def test_status_code_200(client):
+    path = reverse('profiles:index')
+    res = client.get(path)
+    assert res.status_code == 200
 
 
+@pytest.mark.django_db
+def test_title_is_displayed(client):
+    path = reverse('profiles:index')
+    res = client.get(path)
+    res_content = res.content
+    assert str(res_content).find('<title>Profiles</title>') > 0
 
-# class TestClient:
-#     @pytest.fixture()
-#     def test_client(self):
-#         views.testing = True
-#         with views as client:
-#             return client
-#
-#
-# class TestIndex(TestClient):
-#
-#     def test_status_code_200(self, test_client):
-#         res = test_client.get()
+@pytest.mark.django_db
+def test_title_is_displayed_for_lettings_letting_view(client):
+    test_user = User.objects.create(username='test_user')
+    test_profile = Profile.objects.create(favorite_city='Paris', user_id=test_user.id)
+    path = reverse('profiles:profile', kwargs={'username': test_user.username})
+    res = client.get(path)
+    res_content = res.content
+    assert str(res_content).find(test_profile.user.username) > 0

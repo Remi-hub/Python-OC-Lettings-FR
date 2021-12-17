@@ -18,6 +18,7 @@ def test_title_is_displayed(client):
     res_content = res.content
     assert str(res_content).find('<title>Profiles</title>') > 0
 
+
 @pytest.mark.django_db
 def test_title_is_displayed_for_lettings_letting_view(client):
     test_user = User.objects.create(username='test_user')

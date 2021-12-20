@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from profiles.models import Profile
+
 # Create your views here.
 
 # Sed placerat quam in pulvinar commodo. Nullam laoreet consectetur ex, sed consequat libero

@@ -40,7 +40,7 @@ jobs:
       - run:
           name: Run black
           # This assumes pytest is installed via the install-package step above
-          command: black
+          command: black .
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows

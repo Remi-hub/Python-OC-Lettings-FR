@@ -65,7 +65,7 @@ jobs:
           name: Publish Docker Image to Docker Hub
           command: |
             echo "$docker_hub_password" | docker login -u "$docker_hub_username" --password-stdin
-            docker push remi1990/ocr_p13:master
+            docker push ocr_p13:latest
 
 #      - deploy:
 #          name: Push application Docker image

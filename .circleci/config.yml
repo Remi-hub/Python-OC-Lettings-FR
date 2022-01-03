@@ -16,7 +16,6 @@ orbs:
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
   build-and-test:
-    working_directory: ~
     # This is the name of the job, feel free to change it to better match what you're trying to do!
     # These next lines defines a Docker executors: https://circleci.com/docs/2.0/executor-types/
     # You can specify an image from Dockerhub or use one of the convenience images from CircleCI's Developer Hub
@@ -35,14 +34,14 @@ jobs:
       - python/install-packages:
           pkg-manager: pip
       - checkout
-      - setup_remote_docker
+#      - setup_remote_docker
 
           # app-dir: ~/project/package-directory/  # If you're requirements.txt isn't in the root directory.
           # pip-dependency-file: test-requirements.txt  # if you have a different name for your requirements file, maybe one that combines your runtime and test requirements.
-      - run:
-          name: build application docker image
-          command: |
-            docker build --cache-from=remi1990/ocr_p13
+#      - run:
+#          name: build application docker image
+#          command: |
+#            docker build --cache-from=remi1990/ocr_p13
       - run:
           name: Run tests
           # This assumes pytest is installed via the install-package step above
@@ -51,13 +50,13 @@ jobs:
           name: Run black
           # This assumes pytest is installed via the install-package step above
           command: black .
-      - deploy:
-          name: Push application Docker image
-          command: |
-            if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              docker tag app "remi1990/ocr_p13:<< pipeline.git.revision >>"
-              docker push "remi1990/ocr_p13:<< pipeline.git.revision >>"
-            fi
+#      - deploy:
+#          name: Push application Docker image
+#          command: |
+#            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+#              docker tag app "remi1990/ocr_p13:<< pipeline.git.revision >>"
+#              docker push "remi1990/ocr_p13:<< pipeline.git.revision >>"
+#            fi
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows

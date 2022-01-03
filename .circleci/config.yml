@@ -22,6 +22,8 @@ jobs:
     # A list of available CircleCI Docker convenience images are available here: https://circleci.com/developer/images/image/cimg/python
     # The executor is the environment in which the steps below will be executed - below will use a python 3.8 container
     # Change the version below to your required version of python
+    environment:
+      IMAGE_NAME: remi1990/ocr_p13
     docker:
 #      - image: docker:17.05.0-ce-git
       - image: cimg/python:3.8
@@ -35,6 +37,9 @@ jobs:
       - python/install-packages:
           pkg-manager: pip
       - setup_remote_docker
+      - run:
+          name: Build Docker image
+          command: docker build -t $IMAGE_NAME:latest .
 #      - run:
 #          name: Install dependencies
 #          command: |

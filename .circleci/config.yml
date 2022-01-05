@@ -57,6 +57,8 @@ jobs:
             docker push $IMAGE_NAME:$CIRCLE_SHA1
 
   build-and-deploy:
+    environment:
+      IMAGE_NAME: remi1990/ocr_p13
     docker:
       - image: cimg/python:3.8
     steps:

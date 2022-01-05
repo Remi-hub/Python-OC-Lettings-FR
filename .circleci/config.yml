@@ -108,7 +108,6 @@ workflows:
 
 #  https://circleci.com/blog/using-circleci-workflows-to-replicate-docker-hub-automated-builds/:
 
-
 ##          Building and pushing our docker image to Heroku registry
 #          heroku_api_key=${HEROKU_TOKEN} heroku container:push -a $IMAGE_NAME web
 ##          Releasing the new version of our app

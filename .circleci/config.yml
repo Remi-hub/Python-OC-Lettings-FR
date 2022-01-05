@@ -10,6 +10,7 @@ orbs:
   # so you dont have to copy and paste it everywhere.
   # See the orb documentation here: https://circleci.com/developer/orbs/orb/circleci/python
   python: circleci/python@1.2
+  heroku: circleci/heroku@1.2.6
 
 
 # Define a job to be invoked later in a workflow.
@@ -55,13 +56,32 @@ jobs:
             echo "$docker_hub_password" | docker login -u "$docker_hub_username" --password-stdin
             docker push $IMAGE_NAME:$CIRCLE_SHA1
 
-# Invoke jobs via workflows
-# See: https://circleci.com/docs/2.0/configuration-reference/#workflows
+  build-and-deploy:
+    docker:
+      - image: cimg/python:3.8
+    steps:
+      - setup_remote_docker
+      - checkout
+      - run:
+          command: docker build -t $IMAGE_NAME:$CIRCLE_SHA1 .
+
+      - heroku/install
+      - run: heroku container:login
+      - heroku/push-docker-image:
+          process-types: web
+      - heroku/release-docker-image:
+          process-types: web
+
+
+
 workflows:
   sample: # This is the name of the workflow, feel free to change it to better match your workflow.
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - build-and-test
+      - build-and-deploy:
+          requires:
+            - build-and-test
 
 
 #  https://circleci.com/blog/using-circleci-workflows-to-replicate-docker-hub-automated-builds/:

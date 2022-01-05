@@ -68,7 +68,8 @@ jobs:
           command: docker build -t $IMAGE_NAME:$CIRCLE_SHA1 .
 
       - heroku/install
-      - run: heroku container:login
+      - run:
+      command: heroku container:login
       - heroku/push-docker-image:
           process-types: web
       - heroku/release-docker-image:

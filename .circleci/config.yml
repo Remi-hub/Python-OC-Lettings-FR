@@ -37,38 +37,25 @@ jobs:
       - python/install-packages:
           pkg-manager: pip
       - setup_remote_docker
+
+      - run:
+          name: Run tests
+          command: pytest -s --no-migrations
+      - run:
+          name: Run black
+          command: black .
+
       - run:
           name: Build Docker image
           command: docker build -t $IMAGE_NAME:latest .
 
-          # app-dir: ~/project/package-directory/  # If you're requirements.txt isn't in the root directory.
-          # pip-dependency-file: test-requirements.txt  # if you have a different name for your requirements file, maybe one that combines your runtime and test requirements.
-#      - run:
-#          name: build application docker image
-#          command: |
-#            docker build --cache-from=remi1990/ocr_p13
-      - run:
-          name: Run tests
-          # This assumes pytest is installed via the install-package step above
-          command: pytest -s --no-migrations
-      - run:
-          name: Run black
-          # This assumes pytest is installed via the install-package step above
-          command: black .
+
 #  https://circleci.com/blog/using-circleci-workflows-to-replicate-docker-hub-automated-builds/:
       - run:
           name: Publish Docker Image to Docker Hub
           command: |
             echo "$docker_hub_password" | docker login -u "$docker_hub_username" --password-stdin
             docker push $IMAGE_NAME:latest
-
-#      - deploy:
-#          name: Push application Docker image
-#          command: |
-#            if [ "${CIRCLE_BRANCH}" == "master" ]; then
-#              docker tag app "remi1990/ocr_p13:<< pipeline.git.revision >>"
-#              docker push "remi1990/ocr_p13:<< pipeline.git.revision >>"
-#            fi
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
@@ -77,9 +64,3 @@ workflows:
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - build-and-test
-
-
-
-
-# automatiser heroku dans le fichier config
-# ?? automatiser docker avec le ash de commit ??

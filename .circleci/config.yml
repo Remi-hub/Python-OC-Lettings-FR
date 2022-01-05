@@ -60,9 +60,10 @@ jobs:
     docker:
       - image: cimg/python:3.8
     steps:
-      - setup_remote_docker
       - checkout
-      - run: docker build --tag $IMAGE_NAME:latest
+      - setup_remote_docker
+      - run:
+          command: docker build -t $IMAGE_NAME:$CIRCLE_SHA1 .
 
       - heroku/install
       - run: heroku container:login

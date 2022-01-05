@@ -67,9 +67,6 @@ jobs:
       - heroku/install
       - run:
           command: docker build -t $IMAGE_NAME:$CIRCLE_SHA1 .
-      - run:
-          command:
-            - heroku/deploy-via-git
 #      - heroku/install
 #      - run:
 #          command: heroku login
@@ -81,11 +78,11 @@ jobs:
 #          process-types: web
 #      - heroku/release-docker-image:
 #          process-types: web
-#      - run:
-#          command: |
-###          Install Heroku CLI on the build machine
-#          sudo curl: https://cli-assets.heroku.com/install.sh | sh
-##          Login to Heroku registry passing our Heroku API Key as a parameter
+      - run:
+          command: |
+##          Install Heroku CLI on the build machine
+          sudo: curl https://cli-assets.heroku.com/install.sh | sh
+#          Login to Heroku registry passing our Heroku API Key as a parameter
 #          heroku_api_key=${HEROKU_TOKEN} heroku container:login
 ##          Building and pushing our docker image to Heroku registry
 #          heroku_api_key=${HEROKU_TOKEN} heroku container:push -a $IMAGE_NAME web

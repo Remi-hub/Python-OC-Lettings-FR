@@ -78,8 +78,8 @@ jobs:
 #          process-types: web
 #      - heroku/release-docker-image:
 #          process-types: web
-      -run:
-        command: |
+      - run:
+          command: |
 ##          Install Heroku CLI on the build machine
           sudo curl https://cli-assets.heroku.com/install.sh | sh
 ##          Login to Heroku registry passing our Heroku API Key as a parameter

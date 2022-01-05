@@ -69,7 +69,7 @@ jobs:
 
       - heroku/install
       - run:
-      command: heroku container:login
+          command: heroku container:login
       - heroku/push-docker-image:
           process-types: web
       - heroku/release-docker-image:

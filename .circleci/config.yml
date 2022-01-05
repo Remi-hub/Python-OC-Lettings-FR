@@ -83,8 +83,8 @@ jobs:
           command: sudo curl https://cli-assets.heroku.com/install.sh | sh
 
 #          Login to Heroku registry passing our Heroku API Key as a parameter
-      -run:
-        command: heroku_api_key=${HEROKU_TOKEN} heroku container:login
+      - run:
+          command: heroku_api_key=${HEROKU_TOKEN} heroku container:login
 
 
 

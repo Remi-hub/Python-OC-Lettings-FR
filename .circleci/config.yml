@@ -62,8 +62,8 @@ jobs:
     docker:
       - image: cimg/python:3.8
     steps:
-      - checkout
       - setup_remote_docker
+      - checkout
       - run:
           command: docker build -t $IMAGE_NAME:$CIRCLE_SHA1 .
 

@@ -92,6 +92,11 @@ workflows:
       - build-and-deploy:
           requires:
             - build-and-test
+          filters:
+            branches:
+              only:
+                - master
+
 
 
 #  https://circleci.com/blog/using-circleci-workflows-to-replicate-docker-hub-automated-builds/:
@@ -100,3 +105,6 @@ workflows:
 #          heroku_api_key=${HEROKU_TOKEN} heroku container:push -a $IMAGE_NAME web
 ##          Releasing the new version of our app
 #          heroku_api_key=${HEROKU_TOKEN} heroku container:release -a $IMAGE_NAME web
+
+
+

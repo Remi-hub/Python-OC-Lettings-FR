@@ -74,7 +74,9 @@ jobs:
 #          Login to Heroku registry passing our Heroku API Key as a parameter
       - run:
           command: heroku_api_key=${HEROKU_TOKEN} heroku container:login
-
+#          Building and pushing our docker image to Heroku registry
+      - run:
+          command: heroku_api_key=${HEROKU_TOKEN} heroku container:push -a oc-lettings-rk
 
 
 

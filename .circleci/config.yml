@@ -78,6 +78,7 @@ jobs:
       - run:
           command: heroku_api_key=${HEROKU_TOKEN} heroku container:push -a oc-lettings-rk web
 #          Releasing our docker image to Heroku
+      -
       - run:
           command: heroku container:release -a oc-lettings-rk web
 

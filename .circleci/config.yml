@@ -56,55 +56,38 @@ jobs:
             echo "$docker_hub_password" | docker login -u "$docker_hub_username" --password-stdin
             docker push $IMAGE_NAME:$CIRCLE_SHA1
 
-#  build-and-deploy:
-##    environment:
-##      IMAGE_NAME: remi1990/ocr_p13
-#    docker:
-#      - image: cimg/python:3.8
-#    steps:
-#      - setup_remote_docker
-#      - checkout
-#      - heroku/install
-#      - run:
-#          command: docker build -t $IMAGE_NAME:$CIRCLE_SHA1 .
-#      - heroku/install
-#      - run:
-#          command: heroku login
-#      - run:
-#          command: z
-#      - run:
-#          command: heroku container:login
-#      - heroku/push-docker-image:
-#          process-types: web
-#      - heroku/release-docker-image:
-#          process-types: web
-#      - run:
-##          Install Heroku CLI on the build machine
-#          command: sudo curl https://cli-assets.heroku.com/install.sh | sh
-#
-##          Login to Heroku registry passing our Heroku API Key as a parameter
-#      - run:
-#          command: heroku_api_key=${HEROKU_TOKEN}
-#
-#      - run:
-#          command: heroku container:login
+  build-and-deploy:
+    environment:
+      IMAGE_NAME: remi1990/ocr_p13:$CIRCLE_SHA1 .
+    docker:
+      - image: cimg/python:3.8
+    steps:
+      - setup_remote_docker
+      - checkout
+      - heroku/install
+
+
+#          Install Heroku CLI on the build machine
+      - run:
+          command: sudo curl https://cli-assets.heroku.com/install.sh | sh
+
+#          Login to Heroku registry passing our Heroku API Key as a parameter
+      - run:
+          command: heroku_api_key=${HEROKU_TOKEN} heroku container:login
 
 
 
 
-#workflows:
-#  sample: # This is the name of the workflow, feel free to change it to better match your workflow.
-#    # Inside the workflow, you define the jobs you want to run.
-#    jobs:
-#      - build-and-test
-#      - build-and-deploy:
-#          requires:
-#            - build-and-test
+
 workflows:
-  heroku_deploy:
+  sample: # This is the name of the workflow, feel free to change it to better match your workflow.
+    # Inside the workflow, you define the jobs you want to run.
     jobs:
       - build-and-test
-      - heroku/deploy-via-git
+      - build-and-deploy:
+          requires:
+            - build-and-test
+
 
 #  https://circleci.com/blog/using-circleci-workflows-to-replicate-docker-hub-automated-builds/:
 

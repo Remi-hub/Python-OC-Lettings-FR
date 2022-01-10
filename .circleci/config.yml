@@ -74,6 +74,7 @@ jobs:
 #          Login to Heroku registry passing our Heroku API Key as a parameter
       - run:
           command: heroku_api_key=${HEROKU_TOKEN} heroku container:login
+
 #           Creating the app
       - run:
           command: heroku_api_key=${HEROKU_TOKEN} heroku create oc-lettings-rk

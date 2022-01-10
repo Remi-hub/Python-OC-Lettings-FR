@@ -1,4 +1,29 @@
-<title>Holiday Homes</title>
-<h1>Welcome to Holiday Homes</h1>
-<div><a href="{% url 'profiles:index' %}">Profiles</a></div>
-<div><a href="{% url 'lettings:index' %}">Lettings</a></div>
+{% extends 'base.html' %}
+
+{% block title %}Holiday Homes{% endblock %}
+
+{% block content %}
+    <div id="nav">
+    <h1>Welcome to Holiday Homes</h1>
+    </div>
+    <div><a href="{% url 'profiles:index' %}">Profiles</a></div>
+    <div><a href="{% url 'lettings:index' %}">Lettings</a></div>
+
+
+
+
+  <div class="container">
+    <div class="box cyan">
+      <h2>Profiles</h2>
+      <p>Monitors activity to identify project roadblocks</p>
+      <img src="https://assets.codepen.io/2301174/icon-supervisor.svg" alt="">
+    </div>
+
+    <div class="box red">
+      <h2>Lettings</h2>
+      <p>Scans our talent network to create the optimal team for your project</p>
+      <img src="https://assets.codepen.io/2301174/icon-team-builder.svg" alt="">
+    </div>
+  </div>
+
+{% endblock %}

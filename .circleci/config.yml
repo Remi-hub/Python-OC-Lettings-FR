@@ -74,6 +74,9 @@ jobs:
 #          Login to Heroku registry passing our Heroku API Key as a parameter
       - run:
           command: heroku_api_key=${HEROKU_TOKEN} heroku container:login
+#           Creating the app
+      - run:
+          command: heroku_api_key=${HEROKU_TOKEN} heroku create oc-lettings-rk
 #          Building and pushing our docker image to Heroku registry
       - run:
           command: heroku_api_key=${HEROKU_TOKEN} heroku container:push -a oc-lettings-rk web
@@ -107,4 +110,6 @@ workflows:
 #          heroku_api_key=${HEROKU_TOKEN} heroku container:release -a $IMAGE_NAME web
 
 
-
+#todo Veuillez ne pas stocker les identifiants Sentry ou toute autre donnée sensible dans le code source (utilisez des variables d'environnement). Cela est valable également pour toutes les données sensibles du site.
+#todo supprimer l'application et la refaire auto
+#todo pouvoir créer l'application dans les steps

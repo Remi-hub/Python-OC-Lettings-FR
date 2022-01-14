@@ -1,9 +1,27 @@
-<title>{{ profile.user.username }}</title>
-<h1>{{ profile.user.username }}</h1>
-<p>First name: {{ profile.user.first_name }}</p>
-<p>Last name: {{ profile.user.last_name }}</p>
-<p>Email: {{ profile.user.email }}</p>
-<p>Favorite city: {{ profile.favorite_city }}</p>
-<div><a href="{% url 'profiles:index' %}">Back</a></div>
-<div><a href="{% url 'index' %}">Home</a></div>
-<div><a href="{% url 'lettings:index' %}">Lettings</a></div>
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+
+
+    <div class="d-flex justify-content-center pt-5 mt-5">
+        <div class="card justify-content-center" style="width: 20rem;">
+            <div class="card-body text-center">
+                <h5 class="card-title">{% block title %}{{ profile.user.username }}{% endblock %}</h5>
+                <p class="card-text p-2">
+                <p class="m-0">First name: </p>
+                <p>{{ profile.user.first_name }}</p>
+                <p class="m-0">Last name: </p>
+                <p>{{ profile.user.last_name }}</p>
+                <p class="m-0">Email: </p>
+                <p>{{ profile.user.email }}</p>
+                <p>Favorite city: {{ profile.favorite_city }}</p>
+                </p>
+
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

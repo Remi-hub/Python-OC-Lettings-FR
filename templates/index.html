@@ -3,27 +3,32 @@
 {% block title %}Holiday Homes{% endblock %}
 
 {% block content %}
-    <div id="nav">
-    <h1>Welcome to Holiday Homes</h1>
+
+    <div class="d-flex justify-content-evenly pt-5 mt-5" >
+        <div class="card" style="width: 12rem;">
+            <img src="../oc_lettings_site/static/oc_lettings_site/image_profile.png"
+                 class="card-img-top" alt="profile_picture">
+            <div class="card-body text-center">
+                <h5 class="card-title">Profiles</h5>
+                <p class="card-text p-2">Some quick example text to build on the card title and
+                    make up the bulk of the card's content.</p>
+                <a href="{% url 'profiles:index' %}" class="btn btn-primary mt-4 ">To
+                    profiles</a>
+            </div>
+        </div>
+
+        <div class="card" style="width: 12rem;">
+            <img src="../oc_lettings_site/static/oc_lettings_site/lettings_image.png"
+                 class="card-img-top" alt="image_lettings">
+            <div class="card-body text-center">
+                <h5 class="card-title">Lettings</h5>
+                <p class="card-text p-2">Some quick example text to build on the
+                    card title and
+                    make up the bulk of the card's content.</p>
+                <a href="{% url 'lettings:index' %}" class="btn btn-primary mt-4">To
+                    lettings</a>
+            </div>
+        </div>
     </div>
-    <div><a href="{% url 'profiles:index' %}">Profiles</a></div>
-    <div><a href="{% url 'lettings:index' %}">Lettings</a></div>
-
-
-
-
-  <div class="container">
-    <div class="box cyan">
-      <h2>Profiles</h2>
-      <p>Monitors activity to identify project roadblocks</p>
-      <img src="https://assets.codepen.io/2301174/icon-supervisor.svg" alt="">
-    </div>
-
-    <div class="box red">
-      <h2>Lettings</h2>
-      <p>Scans our talent network to create the optimal team for your project</p>
-      <img src="https://assets.codepen.io/2301174/icon-team-builder.svg" alt="">
-    </div>
-  </div>
 
 {% endblock %}

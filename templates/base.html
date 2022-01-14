@@ -3,18 +3,65 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="{% static 'oc_lettings_site/style.css' %}">
+    <link rel="stylesheet" href="{% static 'oc_lettings_site/clearer.css' %}">
+
     <title>{% block title %}Holiday Home{% endblock %}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'oc_lettings_site/style.css' %}">
 </head>
 
 
 <body>
 <div>
+
+
+    <div id="nav_top">
+    <h1 class="pt-3">{% block title_nav %}Welcome to Holiday Homes{% endblock %}</h1>
+        {% if request.path == '/' %}{% else %}
+            <div id="sub_nav" class="text-center">
+            <h2>
+                    <a class="navbar-brand" href ="{% url 'index' %}">Home</a>
+                    <a class="navbar-brand" href ="{% url 'profiles:index' %}">Profiles</a>
+                    <a class="navbar-brand" href ="{% url 'lettings:index' %}" >Lettings</a>
+
+            </h2>
+            </div>
+        {% endif %}
+
+
+
+
+    </div>
+
+
+
     {% block content %}
     {% endblock %}
+    <div class="fixed-bottom ml-5">
+        <div id="nav_bottom">
+
+            <span>Contact Us</span>
+
+            {#            email_icone#}
+            <svg  xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 icons"  fill="none"
+                  viewBox="0
+            0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 19v-8.93a2 2 0 01.89-1.664l7-4.666a2 2 0 012.22 0l7 4.666A2 2 0 0121 10.07V19M3 19a2 2 0 002 2h14a2 2 0 002-2M3 19l6.75-4.5M21 19l-6.75-4.5M3 10l6.75 4.5M21 10l-6.75 4.5m0 0l-1.14.76a2 2 0 01-2.22 0l-1.14-.76" />
+            </svg>
+
+            {#            phone_icone#}
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 icons" fill="none" viewBox="0
+            0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+            </svg>
+
+        </div>
+    </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
 </body>
 </html>

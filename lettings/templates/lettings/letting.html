@@ -1,8 +1,18 @@
+{% extends 'base.html' %}
+
 <title>{{ title }}</title>
-<h1>{{ title }}</h1>
-<p>{{ address.number }} {{ address.street }}</p>
-<p>{{ address.city }}, {{ address.state }} {{ address.zip_code }}</p>
-<p>{{ address.country_iso_code }}</p>
-<div><a href="{% url 'lettings:index' %}">Back</a></div>
-<div><a href="{% url 'index' %}">Home</a></div>
-<div><a href="{% url 'profiles:index' %}">Profiles</a></div>
+
+{% block content %}
+    <div class="d-flex justify-content-center pt-5 mt-5">
+        <div class="card justify-content-center" style="width: 20rem;">
+            <div class="card-body text-center">
+                <h5 class="card-title">{% block title %}{{ title }}{% endblock %}</h5>
+                <p class="card-text p-2">
+                <p class="m-0">address: </p>
+                <p>{{ address.number }} {{ address.street }}
+            {{ address.city }} {{ address.state }} {{ address.zip_code }} {{ address.country_iso_code }}</p>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

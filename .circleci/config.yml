@@ -41,7 +41,7 @@ jobs:
 
       - run:
           name: Run tests
-          env:
+          environment:
             SECRET_KEY: 1g1o%gdki4s%(nsno9kl!os4zmaz4!gvf*w^@w4)75xl6x=_66
           command: pytest -s --no-migrations
       - run:

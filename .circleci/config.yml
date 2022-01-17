@@ -92,7 +92,7 @@ jobs:
 
       - run:
           command: >
-            heroku_api_key=${HEROKU_TOKEN} heroku config:set SENRTY_DSN=${SENRTY_DSN} \
+            heroku_api_key=${HEROKU_TOKEN} heroku config:set SENTRY_DSN=${SENTRY_DSN} \
             -a oc-lettings-rk web
 
 #         Releasing our docker image to Heroku

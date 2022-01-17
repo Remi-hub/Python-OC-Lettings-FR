@@ -84,7 +84,12 @@ jobs:
 #          Building and pushing our docker image to Heroku registry
       - run:
           command: heroku_api_key=${HEROKU_TOKEN} heroku container:push -a oc-lettings-rk web
-#          Releasing our docker image to Heroku
+#         Setting the environment variable
+      - run:
+          command: heroku config:set SECRET_KEY=${SECRET_KEY}
+      - run:
+          command: heroku config:set SENRTY_DSN=${SENRTY_DSN}
+#         Releasing our docker image to Heroku
       - run:
           command: heroku container:release -a oc-lettings-rk web
 

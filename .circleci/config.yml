@@ -89,6 +89,8 @@ jobs:
           command: heroku_api_key=${HEROKU_TOKEN} heroku container:push -a oc-lettings-rk web
 
 #         Setting the environment variable
+      - run:
+          command: echo $SECRET_KEY
 
       - run:
           command: heroku_api_key=${HEROKU_TOKEN} heroku config:set SECRET_KEY=$SECRET_KEY -a oc-lettings-rk

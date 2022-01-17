@@ -62,6 +62,9 @@ jobs:
   build-and-deploy:
     environment:
       IMAGE_NAME: remi1990/ocr_p13:$CIRCLE_SHA1 .
+      SECRET_KEY: $SECRET_KEY
+      SENTRY_DSN: $SENTRY_DSN
+
     docker:
       - image: cimg/python:3.8
     steps:
@@ -86,11 +89,11 @@ jobs:
           command: heroku_api_key=${HEROKU_TOKEN} heroku container:push -a oc-lettings-rk web
 
 #         Setting the environment variable
-      - run:
-          command: heroku_api_key=${HEROKU_TOKEN} heroku config:set SECRET_KEY="$SECRET_KEY" -a oc-lettings-rk
-
-      - run:
-          command: heroku_api_key=${HEROKU_TOKEN} heroku config:set SENTRY_DSN="$SENTRY_DSN" -a oc-lettings-rk
+#      - run:
+#          command: heroku_api_key=${HEROKU_TOKEN} heroku config:set SECRET_KEY="$SECRET_KEY" -a oc-lettings-rk
+#
+#      - run:
+#          command: heroku_api_key=${HEROKU_TOKEN} heroku config:set SENTRY_DSN="$SENTRY_DSN" -a oc-lettings-rk
 
 
 #         Releasing our docker image to Heroku

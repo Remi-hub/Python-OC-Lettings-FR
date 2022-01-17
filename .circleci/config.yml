@@ -108,7 +108,7 @@ jobs:
             echo $SCOOBIDOO
       - run:
           command: env
-      - run: echo MY_SECRET_KEY
+      - run: echo $MY_SECRET_KEY
 
 
       - run:

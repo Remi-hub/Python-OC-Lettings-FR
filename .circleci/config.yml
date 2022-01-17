@@ -100,11 +100,11 @@ jobs:
 
       - run:
           command: |
-          echo $SECRET_KEY
-          echo "$SECRET_KEY"
-          echo '$SECRET_KEY'
-          echo ${SECRET_KEY}
-          echo `$SECRET_KEY`
+            echo $SECRET_KEY
+            echo "$SECRET_KEY"
+            echo '$SECRET_KEY'
+            echo ${SECRET_KEY}
+            echo `$SECRET_KEY`
 
 
 

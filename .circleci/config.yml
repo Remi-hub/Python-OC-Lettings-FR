@@ -115,5 +115,4 @@ workflows:
 #  code source, utiliser pyenv pour ça
 #  (utilisez des variables d'environnement). Cela est valable également pour toutes les données sensibles du site.
 
-# todo faut aussi pouvoir deployer l'app si le nom existe deja ... peut etre || true
 

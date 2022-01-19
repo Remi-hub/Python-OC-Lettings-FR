@@ -88,14 +88,11 @@ jobs:
           command: heroku_api_key=${HEROKU_TOKEN} heroku container:push -a oc-lettings-rk web
 
 #         Setting the environment variable
-
       - run:
           command: heroku_api_key=${HEROKU_TOKEN} heroku config:set SECRET_KEY=$SECRET_KEY -a oc-lettings-rk
 
       - run:
           command: heroku_api_key=${HEROKU_TOKEN} heroku config:set SENTRY_DSN=$SENTRY_DSN -a oc-lettings-rk
-
-
 
 #         Releasing our docker image to Heroku
       - run:
@@ -116,19 +113,3 @@ workflows:
             branches:
               only:
                 - master
-
-
-
-#  https://circleci.com/blog/using-circleci-workflows-to-replicate-docker-hub-automated-builds/:
-
-##          Building and pushing our docker image to Heroku registry
-#          heroku_api_key=${HEROKU_TOKEN} heroku container:push -a $IMAGE_NAME web
-##          Releasing the new version of our app
-#          heroku_api_key=${HEROKU_TOKEN} heroku container:release -a $IMAGE_NAME web
-
-
-#todo Veuillez ne pas stocker les identifiants Sentry ou toute autre donnée sensible dans le
-#  code source, utiliser pyenv pour ça
-#  (utilisez des variables d'environnement). Cela est valable également pour toutes les données sensibles du site.
-
-

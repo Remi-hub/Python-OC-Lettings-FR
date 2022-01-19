@@ -75,3 +75,76 @@ Utilisation de PowerShell, comme ci-dessus sauf :
 
 - Pour activer l'environnement virtuel, `.\venv\Scripts\Activate.ps1` 
 - Remplacer `which <my-command>` par `(Get-Command <my-command>).Path`
+
+
+### variable d'environnement local
+
+Pour exécuter le site en local nous avons utilisé la librairie dotenv, pour l'utiliser il faut 
+créer un fichier .env a la racine du projet et lui passer les variables suivants :
+- SECRET_KEY=votre secret key django
+- SENTRY_DSN=votre dsn de sentry
+
+
+## Déploiement
+
+### Configuration requise
+
+Avoir un compte sur les applications suivantes est nécessaire :
+
+- Github
+- CircleCI
+- Sentry
+- DockerHub
+- Heroku
+
+
+### Utilisation de CircleCI
+
+Nous effectuons le déploiement automatique ainsi que le linting et le test de l'application grâce 
+à CircleCI. A chaque push de notre projet sur Github, nous effectuons le workflow suivant :
+
+Tout d'abord le workflow suivant :
+- checkout (récuperer le code du projet)
+- installation des lib listé dans le requirements.txt grâce à pip
+- creation d'un environnement pour exécuter le conteneur docker
+- nous lançons nos tests grâce à Pytest
+- nous effectuons le linting du site grâce à Black
+
+Puis nous pouvons passer aux étapes de déploiement si tous le workflow précédent est validé :
+- creation du container avec l'image du projet depuis dockerhub
+- déploiement de l'image sur le site heroku
+
+### comment deployer l'application 
+
+#### 1 - Dockerhub
+- créer un compte et  se connecter à Docker
+- créer un dépôt et lui donner un nom, dans mon cas ocr_p13
+
+#### 2 - Heroku
+- créer un compte et se connecter à Heroku
+- créer une nouvelle application, dans mon cas oc-lettings-rk
+
+#### 3 - Sentry
+- créer un compte et se connecter à Sentry
+- créer un nouveau projet sous la plateforme django
+- nommer le projet, dans mon cas ocr_p13
+
+#### 4 - CircleCI
+- Se connecter sur circleCI grâce à Github
+- Choisir notre projet et cliquer sur Set up Project
+- accepter la pull request et checkout sur la master, nous avons désormais notre fichier de conf
+- dans les option de notre projet, ajouter les variables d'environnement suivant:
+
+`HEROKU_API_KEY` -> entrez en valeur la clef api obtenu sur le site heroku
+`HEROKU_APP_NAME` -> entrez le nom de l'application créer sur heroku
+`HEROKU_TOKEN` -> obtenu grâce à heroku cli, et tapez heroku auth:token
+`SECRET_KEY` -> votre clef secrete django
+`SENTRY DSN` -> votre dsn obtenu lors de la config de sentry
+`docker_hub_password` -> votre mdp docker hub
+`docker_hub_username` -> votre username docker hub
+
+
+#### Exécuter l'image docker hub en local 
+`docker run --env-file .env -p 8001:8000 -it remi1990/ocr_p13:"tag"`
+Le tag correspond au dernier tag de commit que vous pouvez voir sur docker hub
+Pensez à créer le fichier .env qui contient vos variables d'environnement

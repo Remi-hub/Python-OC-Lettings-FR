@@ -135,14 +135,13 @@ Puis nous pouvons passer aux étapes de déploiement si tous le workflow précé
 - accepter la pull request et checkout sur la master, nous avons désormais notre fichier de conf
 - dans les option de notre projet, ajouter les variables d'environnement suivant:
 
-`HEROKU_API_KEY` -> entrez en valeur la clef api obtenu sur le site heroku.
-`HEROKU_APP_NAME` -> entrez le nom de l'application créer sur heroku.
-`HEROKU_TOKEN` -> obtenu grâce à heroku cli, et tapez heroku auth:token.
-`SECRET_KEY` -> votre clef secrete django.
-`SENTRY DSN` -> votre dsn obtenu lors de la config de sentry.
-`docker_hub_password` -> votre mdp docker hub.
-`docker_hub_username` -> votre username docker hub.
-
+`HEROKU_API_KEY` -> entrez en valeur la clef api obtenu sur le site heroku.  \
+`HEROKU_APP_NAME` -> entrez le nom de l'application créer sur heroku.  \
+`HEROKU_TOKEN` -> obtenu grâce à heroku cli, et tapez heroku auth:token.  \
+`SECRET_KEY` -> votre clef secrete django.  \
+`SENTRY DSN` -> votre dsn obtenu lors de la config de sentry.  \
+`docker_hub_password` -> votre mdp docker hub.  \
+`docker_hub_username` -> votre username docker hub.  \
 
 #### Exécuter l'image docker hub en local 
 `docker run --env-file .env -p 8001:8000 -it remi1990/ocr_p13:"tag"`
